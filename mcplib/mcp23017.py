@@ -35,12 +35,10 @@ class MCP23017(object):
 			self.ports[bank] = self.ports[bank] | self.p2add(port)
 		else:
 			self.ports[bank] = self.ports[bank] & ~ self.p2add(port)
-
-		
 		self.bus.write_byte_data(self.DEVICE,self.OLATx[bank],self.ports[bank])
 
-		
-		# set hardware = self.ports
+	def set_paral(self, bank, value):
+		self.bus.write_byte_data(self.DEVICE,self.OLATx[bank],value)
 
 	def get(self, bank):
 		# read port p2add(port)
