@@ -48,6 +48,7 @@ class MCP23017(object):
 		return self.bus.read_byte_data(self.DEVICE,self.OLATx[bank])
 
 
-
-
-		
+	def close(self):
+		self.cleanup()
+		self.bus = None
+	
