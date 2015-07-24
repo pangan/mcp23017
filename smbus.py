@@ -4,9 +4,13 @@ class smbus():
 
 class SMBus():
 	def __init__(self,i):
-		pass
+		self.port={}
 
-	def write_byte_data(self, DEVICE,OLATB,value):
-		pass
+	def write_byte_data(self, DEVICE,OLATx,value):
+		self.port[OLATx]=value
+
+	def read_byte_data(self, DEVICE, OLATx):
+		return self.port[OLATx]
+
 
 

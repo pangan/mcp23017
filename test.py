@@ -11,6 +11,7 @@ chip.set(_A,0,True)
 chip.set(_A,1,False)
 chip.set(_A,7,True)
 
-print "p#\tA\tB"
-for i in range (0,8):
-	print "%s\t%s\t%s" %(i, chip.get(_A,i), chip.get(_B,i))
+print "p#\tvalue"
+
+for i in range (0,2):
+	print "%s\t%s" %(i,bin(chip.get(i)))
