@@ -1,4 +1,5 @@
 from mcplib import MCP23017
+import time
 
 _A = 0
 _B = 1
@@ -6,19 +7,31 @@ chip = MCP23017()
 
 #chip.cleanup()
 
-chip.set(_A,1,True)
-chip.set(_A,0,True)
-chip.set(_A,1,False)
-chip.set(_A,6,True)
-
+seq=[[1,0,0,0],
+	[1,1,0,0],
+	[0,1,0,0],
+	[0,1,1,0],
+	[0,0,1,0],
+	[0,0,1,1],
+	[0,0,0,1],
+	[1,0,0,1]]
 print "p#\tvalue"
 
-for i in range (0,2):
-	print "%s\t%s" %(i,bin(chip.get(i)))
-
+a=0
+direct = 1
 try:
 	while 1:
-		pass
+		chip.set(_A,0,seq[a][0])
+		chip.set(_A,1,seq[a][1])
+		chip.set(_A,2,seq[a][2])
+		chip.set(_A,3,seq[a][3])
+		a = a + direct
+		if a==8: 
+			a=0
+		if a==-1:
+			a=7
+		time.sleep(0.001)
+		
 except KeyboardInterrupt:
 	chip.close()
 	exit

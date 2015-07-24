@@ -36,7 +36,7 @@ class MCP23017(object):
 		else:
 			self.ports[bank] = self.ports[bank] & ~ self.p2add(port)
 
-		print " write bank %s , val: %s to hardware "%(bank, self.ports[bank])
+		
 		self.bus.write_byte_data(self.DEVICE,self.OLATx[bank],self.ports[bank])
 
 		
@@ -45,7 +45,7 @@ class MCP23017(object):
 	def get(self, bank):
 		# read port p2add(port)
 		#return bool(self.ports[bank] & self.p2add(port))
-		return self.bus.read_byte_data(self.DEVICE,self.OLATx[bank])
+		return self.bus.read_byte_data(self.DEVICE,self.GPIOx[bank])
 
 
 	def close(self):
